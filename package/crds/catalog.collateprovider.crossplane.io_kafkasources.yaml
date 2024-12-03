@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: mytypes.sample.template.crossplane.io
+  name: kafkasources.catalog.collateprovider.crossplane.io
 spec:
-  group: sample.template.crossplane.io
+  group: catalog.collateprovider.crossplane.io
   names:
     categories:
     - crossplane
     - managed
-    - template
-    kind: MyType
-    listKind: MyTypeList
-    plural: mytypes
-    singular: mytype
+    - collateprovider
+    kind: KafkaSource
+    listKind: KafkaSourceList
+    plural: kafkasources
+    singular: kafkasource
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: A MyType is an example API type.
+        description: A KafkaSource is an example API type.
         properties:
           apiVersion:
             description: |-
@@ -54,7 +54,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: A MyTypeSpec defines the desired state of a MyType.
+            description: A KafkaSourceSpec defines the desired state of a KafkaSource.
             properties:
               deletionPolicy:
                 default: Delete
@@ -71,7 +71,8 @@ spec:
                 - Delete
                 type: string
               forProvider:
-                description: MyTypeParameters are the configurable fields of a MyType.
+                description: KafkaSourceParameters are the configurable fields of
+                  a KafkaSource.
                 properties:
                   configurableField:
                     type: string
@@ -246,17 +247,14 @@ spec:
             - forProvider
             type: object
           status:
-            description: A MyTypeStatus represents the observed state of a MyType.
+            description: A KafkaSourceStatus represents the observed state of a KafkaSource.
             properties:
               atProvider:
-                description: MyTypeObservation are the observable fields of a MyType.
+                description: KafkaSourceObservation are the observable fields of a
+                  KafkaSource.
                 properties:
-                  configurableField:
-                    type: string
                   observableField:
                     type: string
-                required:
-                - configurableField
                 type: object
               conditions:
                 description: Conditions of the resource.
